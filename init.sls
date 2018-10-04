@@ -25,6 +25,6 @@
       - user: {{ username }}
 {%- endmacro %}
 
-{% for username, attr in pillar['ssh-tunnel']['users'].items() %}
+{% for username, attr in pillar['ssh-tunnel']['users']|dictsort %}
 {{ ssh_tunnel_user(attr['name'], username, attr['pubkey']) }}
 {% endfor %}
