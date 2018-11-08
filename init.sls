@@ -20,7 +20,7 @@
     - mode: 644
     - contents:
       # Allow SSH tunneling to 1.postgresql.reporting only
-      - no-pty,no-user-rc,no-agent-forwarding,no-X11-forwarding,permitopen="{{ pillar['ssh-tunnel']['remote_host'] }}",command="/bin/echo do-not-send-commands" {{ ssh_pubkey }}
+      - no-pty,no-user-rc,no-agent-forwarding,no-X11-forwarding,permitopen="{{ pillar['ssh-tunnel']['remote-host'] }}",command="/bin/echo do-not-send-commands" {{ ssh_pubkey }}
     - require:
       - user: {{ username }}
 {%- endmacro %}

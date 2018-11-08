@@ -1,6 +1,6 @@
 # vim: ft=sls
 ssh-tunnel:
-  remote_host: example.com:443
+  remote-host: example.com:443
   users:
     adam.jensen:
       name: Adam Jensen
