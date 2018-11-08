@@ -1,0 +1,7 @@
+name: ssh-tunnel
+os: Debian, Ubuntu
+os_family: Debian
+version: 201811
+release: 1
+summary: Formula to set up SSH tunnels
+description: Formula to set up SSH tunnels
