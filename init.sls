@@ -1,3 +1,5 @@
+{% set remote_hosts = pillar['ssh-tunnel']['remote-hosts'] %}
+
 {%- macro ssh_tunnel_user(fullname, username, ssh_pubkey) %}
 {{ username }}:
   user.present:
@@ -20,7 +22,7 @@
     - mode: 644
     - contents:
       # Allow SSH tunneling to 1.postgresql.reporting only
-      - no-pty,no-user-rc,no-agent-forwarding,no-X11-forwarding,permitopen="{{ pillar['ssh-tunnel']['remote-host'] }}",command="/bin/echo do-not-send-commands" {{ ssh_pubkey }}
+      - no-pty,no-user-rc,no-agent-forwarding,no-X11-forwarding,{% for host in remote_hosts %}permitopen="{{ host }}",{% endfor %}command="/bin/echo do-not-send-commands" {{ ssh_pubkey }}
     - require:
       - user: {{ username }}
 {%- endmacro %}
