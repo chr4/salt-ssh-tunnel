@@ -21,7 +21,7 @@
     - group: {{ username }}
     - mode: 644
     - contents:
-      # Allow SSH tunneling to 1.postgresql.reporting only
+      # Allow SSH tunneling only to specified hosts
       - no-pty,no-user-rc,no-agent-forwarding,no-X11-forwarding,{% for host in remote_hosts %}permitopen="{{ host }}",{% endfor %}command="/bin/echo do-not-send-commands" {{ ssh_pubkey }}
     - require:
       - user: {{ username }}
