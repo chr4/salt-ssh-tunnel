@@ -1,6 +1,6 @@
 # vim: ft=sls
 
-ssh-tunnels:
+ssh-tunnel:
   adam.jensen:
     fullname: Adam Jensen
     allowed_hosts:

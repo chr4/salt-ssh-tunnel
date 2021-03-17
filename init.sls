@@ -1,4 +1,4 @@
-{% for username, data in pillar['ssh-tunnels']|dictsort %}
+{% for username, data in pillar['ssh-tunnel']|dictsort %}
 
 {{ username }}:
   user.present:
