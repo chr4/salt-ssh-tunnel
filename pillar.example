@@ -1,9 +1,10 @@
 # vim: ft=sls
+
 ssh-tunnel:
-  remote-hosts:
-    - example1.com:443
-    - example2.com:443
-  users:
-    adam.jensen:
-      name: Adam Jensen
-      pubkey: ssh-ed25519 AAAAC.... Adam Jensen <adam@deusex.universe>
+  adam.jensen:
+    fullname: Adam Jensen
+    allowed_hosts:
+      - localhost:443
+      - localhost:8080
+    pubkeys:
+      - ssh-ed25519 AAAAC.... Adam Jensen <adam@deusex.universe>
