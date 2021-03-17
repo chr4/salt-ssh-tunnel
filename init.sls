@@ -2,7 +2,7 @@
 
 {{ username }}:
   user.present:
-    - fullname: {{ data['name'] }}
+    - fullname: {{ data['fullname'] }}
     - shell: /bin/bash
     - home: /home/{{ username }}
 

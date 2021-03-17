@@ -7,7 +7,7 @@ common-hosts:
 ssh-tunnel:
   users:
     adam.jensen:
-      name: Adam Jensen
+      fullname: Adam Jensen
       # allowed_hosts can use yaml anchors to reuse configuration
       # in this example, it uses both a common host + individually
       # defined 8080 port.
