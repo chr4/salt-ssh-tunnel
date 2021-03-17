@@ -1,18 +1,10 @@
 # vim: ft=sls
 
-common-hosts:
- - &nginx
-   localhost:443
-
-ssh-tunnel:
-  users:
+ssh-tunnels:
     adam.jensen:
       fullname: Adam Jensen
-      # allowed_hosts can use yaml anchors to reuse configuration
-      # in this example, it uses both a common host + individually
-      # defined 8080 port.
       allowed_hosts:
-        - *nginx
+        - localhost:443
         - localhost:8080
       pubkeys:
         - ssh-ed25519 AAAAC.... Adam Jensen <adam@deusex.universe>
