@@ -1,9 +1,8 @@
-{% set remote_hosts = pillar['ssh-tunnel']['remote-hosts'] %}
+{% for username, data in pillar['ssh-tunnel']['users']|dictsort %}
 
-{%- macro ssh_tunnel_user(fullname, username, ssh_pubkey) %}
 {{ username }}:
   user.present:
-    - fullname: {{ fullname }}
+    - fullname: {{ data['name'] }}
     - shell: /bin/bash
     - home: /home/{{ username }}
 
@@ -22,11 +21,10 @@
     - mode: 644
     - contents:
       # Allow SSH tunneling only to specified hosts
-      - no-pty,no-user-rc,no-agent-forwarding,no-X11-forwarding,{% for host in remote_hosts %}permitopen="{{ host }}",{% endfor %}command="/bin/echo do-not-send-commands" {{ ssh_pubkey }}
+      {% for pubkey in data['pubkeys'] %}
+      - no-pty,no-user-rc,no-agent-forwarding,no-X11-forwarding,{% for host in data['allowed_hosts'] %}permitopen="{{ host }}",{% endfor %}command="/bin/echo do-not-send-commands" {{ pubkey }}
+      {% endfor %}
     - require:
       - user: {{ username }}
-{%- endmacro %}
 
-{% for username, attr in pillar['ssh-tunnel']['users']|dictsort %}
-{{ ssh_tunnel_user(attr['name'], username, attr['pubkey']) }}
 {% endfor %}

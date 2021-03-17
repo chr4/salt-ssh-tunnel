@@ -1,9 +1,18 @@
 # vim: ft=sls
+
+common-hosts:
+ - &nginx
+   localhost:443
+
 ssh-tunnel:
-  remote-hosts:
-    - example1.com:443
-    - example2.com:443
   users:
     adam.jensen:
       name: Adam Jensen
-      pubkey: ssh-ed25519 AAAAC.... Adam Jensen <adam@deusex.universe>
+      # allowed_hosts can use yaml anchors to reuse configuration
+      # in this example, it uses both a common host + individually
+      # defined 8080 port.
+      allowed_hosts:
+        - *nginx
+        - localhost:8080
+      pubkeys:
+        - ssh-ed25519 AAAAC.... Adam Jensen <adam@deusex.universe>
