@@ -3,8 +3,11 @@
 ssh-tunnel:
   adam.jensen:
     fullname: Adam Jensen
+
+    # NOTE: This will be skipped when ssh-tunnel.only-salt is used
     allowed_hosts:
       - localhost:443
       - localhost:8080
+
     pubkeys:
       - ssh-ed25519 AAAAC.... Adam Jensen <adam@deusex.universe>
