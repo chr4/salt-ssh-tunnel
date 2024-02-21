@@ -3,6 +3,7 @@
 ssh-tunnel:
   adam.jensen:
     fullname: Adam Jensen
+    home: /home/eliza # Defaults to /home/<username>
     allowed_hosts:
       - localhost:443
       - localhost:8080
